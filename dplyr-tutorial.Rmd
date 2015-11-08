@@ -1,6 +1,6 @@
 ---
 title: "Introduction to dplyr for Faster Data Manipulation in R"
-output: html_document
+output: pdf_document
 ---
 
 Note: There is a 40-minute [video tutorial](https://www.youtube.com/watch?v=jWjqLW-u3hc) on YouTube that walks through this document in detail.
@@ -265,7 +265,8 @@ flights %>%
     group_by(UniqueCarrier) %>%
     select(Month, DayofMonth, DepDelay) %>%
     filter(min_rank(desc(DepDelay)) <= 2) %>%
-    arrange(UniqueCarrier, desc(DepDelay))
+    arrange(UniqueCarrier, desc(DepDelay)) %>%
+    print(n = 30)
 ```
 
 ```{r}
@@ -274,7 +275,8 @@ flights %>%
     group_by(UniqueCarrier) %>%
     select(Month, DayofMonth, DepDelay) %>%
     top_n(2) %>%
-    arrange(UniqueCarrier, desc(DepDelay))
+    arrange(UniqueCarrier, desc(DepDelay)) %>%
+    print(n = 30)
 
 # for each month, calculate the number of flights and the change from the previous month
 flights %>%
